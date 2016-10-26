@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jingshan.stlgsc.web.bill.mapper.BillMapper" >
+  <resultMap id="BaseResultMap" type="cn.jingshan.stlgsc.web.bill.po.Bill" >
+    <id column="id" property="id" jdbcType="CHAR" />
+    <result column="bill_num" property="billNum" jdbcType="CHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="cost" property="cost" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="insert_dt" property="insertDt" jdbcType="TIMESTAMP" />
+    <result column="rec_id" property="recId" jdbcType="INTEGER" />
+    <result column="pay_id" property="payId" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, bill_num, user_id, cost, status, insert_dt, rec_id, pay_id
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_bill_mgr
+    where id = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_bill_mgr
+    where id = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.jingshan.stlgsc.web.bill.po.Bill" >
+    insert into t_bill_mgr (id, bill_num, user_id, 
+      cost, status, insert_dt, 
+      rec_id, pay_id)
+    values (#{id,jdbcType=CHAR}, #{billNum,jdbcType=CHAR}, #{userId,jdbcType=VARCHAR}, 
+      #{cost,jdbcType=DOUBLE}, #{status,jdbcType=VARCHAR}, #{insertDt,jdbcType=TIMESTAMP}, 
+      #{recId,jdbcType=INTEGER}, #{payId,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jingshan.stlgsc.web.bill.po.Bill" >
+    insert into t_bill_mgr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="billNum != null" >
+        bill_num,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="cost != null" >
+        cost,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="insertDt != null" >
+        insert_dt,
+      </if>
+      <if test="recId != null" >
+        rec_id,
+      </if>
+      <if test="payId != null" >
+        pay_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="billNum != null" >
+        #{billNum,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDt != null" >
+        #{insertDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recId != null" >
+        #{recId,jdbcType=INTEGER},
+      </if>
+      <if test="payId != null" >
+        #{payId,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jingshan.stlgsc.web.bill.po.Bill" >
+    update t_bill_mgr
+    <set >
+      <if test="billNum != null" >
+        bill_num = #{billNum,jdbcType=CHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="cost != null" >
+        cost = #{cost,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDt != null" >
+        insert_dt = #{insertDt,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recId != null" >
+        rec_id = #{recId,jdbcType=INTEGER},
+      </if>
+      <if test="payId != null" >
+        pay_id = #{payId,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jingshan.stlgsc.web.bill.po.Bill" >
+    update t_bill_mgr
+    set bill_num = #{billNum,jdbcType=CHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      cost = #{cost,jdbcType=DOUBLE},
+      status = #{status,jdbcType=VARCHAR},
+      insert_dt = #{insertDt,jdbcType=TIMESTAMP},
+      rec_id = #{recId,jdbcType=INTEGER},
+      pay_id = #{payId,jdbcType=TINYINT}
+    where id = #{id,jdbcType=CHAR}
+  </update>
+</mapper>

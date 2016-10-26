@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jingshan.stlgsc.web.billgoods.mapper.BillGoodsMapper" >
+  <resultMap id="BaseResultMap" type="cn.jingshan.stlgsc.web.billgoods.po.BillGoods" >
+    <result column="bill_num" property="billNum" jdbcType="CHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="VARCHAR" />
+    <result column="num" property="num" jdbcType="INTEGER" />
+  </resultMap>
+  <insert id="insert" parameterType="cn.jingshan.stlgsc.web.billgoods.po.BillGoods" >
+    insert into t_bill_goods (bill_num, goods_id, num
+      )
+    values (#{billNum,jdbcType=CHAR}, #{goodsId,jdbcType=VARCHAR}, #{num,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jingshan.stlgsc.web.billgoods.po.BillGoods" >
+    insert into t_bill_goods
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="billNum != null" >
+        bill_num,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="num != null" >
+        num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="billNum != null" >
+        #{billNum,jdbcType=CHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=VARCHAR},
+      </if>
+      <if test="num != null" >
+        #{num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>

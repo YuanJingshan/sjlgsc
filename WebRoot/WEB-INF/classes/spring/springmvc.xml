@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"    
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"   
+    xmlns:aop="http://www.springframework.org/schema/aop"   
+    xmlns:context="http://www.springframework.org/schema/context"  
+    xmlns:tx="http://www.springframework.org/schema/tx"  
+    xmlns:mvc="http://www.springframework.org/schema/mvc"   
+    xsi:schemaLocation="
+    	http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-4.0.xsd  
+    	http://www.springframework.org/schema/aop 
+    	http://www.springframework.org/schema/aop/spring-aop-4.0.xsd  
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-4.0.xsd  
+        http://www.springframework.org/schema/tx 
+        http://www.springframework.org/schema/tx/spring-tx-4.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-4.0.xsd">
+    
+    <!-- 配置扫描handler -->
+ 	<context:component-scan base-package="cn.jingshan.stlgsc.web" />
+ 	
+	<!-- 扫描 -->
+<!--     <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer"> -->
+<!-- 		<property name="basePackage" value="cn.jingshan.stlgsc.web"></property> -->
+<!-- 	</bean> -->
+    
+    <!-- 注解驱动，代替上面两个注解，且加载了不少其他参数,推荐使用 -->
+    <mvc:annotation-driven>
+    	<mvc:message-converters>  
+            <bean class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">  
+                <property name="objectMapper">
+                	<bean class="com.fasterxml.jackson.databind.ObjectMapper">  
+                        <property name="dateFormat">  
+                            <bean class="java.text.SimpleDateFormat">  
+                                <constructor-arg type="java.lang.String" value="yyyy-MM-dd HH:mm:ss" />  
+                            </bean>  
+                        </property>  
+                    </bean>
+                </property>  
+            </bean>  
+        </mvc:message-converters>
+    </mvc:annotation-driven>
+    
+    <!-- 视图解析器 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver"> 
+		<!-- 配置jsp路径的前缀 -->
+		<property name="prefix" value="/view/" />
+		<!-- 配置jsp路径的后缀 -->
+		<property name="suffix" value=".jsp" /> 
+	</bean>
+	
+	<!-- 全局异常处理器 -->
+	<bean class="cn.jingshan.stlgsc.exception.MyExceptionResolver"></bean>
+	
+	<!-- 拦截器 -->
+	<mvc:interceptors>
+		<mvc:interceptor>
+			<mvc:mapping path="/**"/>
+			<bean class="cn.jingshan.stlgsc.filter.LoginInterceptor"></bean>
+		</mvc:interceptor>
+	</mvc:interceptors>
+	
+	<!-- 文件上传解析器 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">  
+        <property name="defaultEncoding" value="utf-8"></property>   
+        <property name="maxUploadSize" value="10485760"></property>  
+        <property name="maxInMemorySize" value="40960"></property>  
+    </bean>
+    
+</beans>

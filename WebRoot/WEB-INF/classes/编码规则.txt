@@ -1,0 +1,52 @@
+编码规范
+1 注释
+1.1 文件注释
+/**
+ * <p>FileName: ${file_name}</p>
+ * <p>Description: </p>
+ * <p>Company: www.shuiguoyizhan.com</p>
+ * @author  yjs
+ * @date    ${date}
+ * @vession 1.0.0
+ */
+ 
+1.2 类注释
+/**
+ * <p>ClassName: ${type_name}</p>
+ * <p>Description: </p>
+ * <p>Company: www.shuiguoyizhan.com</p>
+ * @author  yjs
+ * @date    ${date}
+ * @vession 1.0.0
+ */
+ 
+1.3 方法注释
+/**
+ * <p>MethodName: ${enclosing_method}</p>
+ * <p>Description: </p>
+ * <p>Company: www.shuiguoyizhan.com</p>
+ * <p>Parameter: </P>
+ * <p>Return Type: ${return_type}</P>
+ * @author  yjs
+ * @date    ${date}
+ * @vession 1.0.0
+ */
+ 
+1.4 类字段注释
+//
+
+其他
+单行：//
+多行：/*......*/
+
+2 命名
+原则：尽可能从名字并看出意思。驼峰式命名法则。
+
+3 日志
+日志格式
+Mylog info: 2016-04-17 21:07:56--class cn.jingshan.sgyz.service.impl.ManagerServiceImpl int delete(List<String> list) start parameter:[M-sfLByXNI]
+Mylog info: 2016-04-17 21:07:56--class cn.jingshan.sgyz.service.impl.ManagerServiceImpl int delete(List<String> list) end
+Mylog level：date -- class method parameter 
+
+log4j
+

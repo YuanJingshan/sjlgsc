@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+
+<configuration>
+
+	<!-- 全局配置参数 -->
+	<settings>
+		<!-- 开启延迟加载 -->
+		<setting name="lazyLoadingEnabled" value="true"/>
+		<!-- 改积极加载为消极加载 -->
+		<setting name="aggressiveLazyLoading" value="false"/>
+		<!-- 开启二级缓存 -->
+		<setting name="cacheEnabled" value="true"/>
+		<!-- 默认执行器 -->
+		<setting name="defaultExecutorType" value="SIMPLE" />
+	</settings>
+	
+	<!-- 别名的定义 -->
+	<typeAliases>
+		<!-- 批量别名定义 -->
+		<package name="cn.jingshan.stlgsc.web.*.po"/>
+	</typeAliases>
+	
+    <!-- 加载映射文件 -->    
+    <mappers>
+        <!-- 批量加载多个,在spring添加批量扫描后，不需要配置 -->
+        <package name="cn.jingshan.stlgsc.web.*.mapper"/>
+ 	</mappers>
+    
+</configuration>

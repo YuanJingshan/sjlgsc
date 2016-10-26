@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.jingshan.stlgsc.web.goods.mapper.GoodsMapper" >
+
+  <resultMap id="BaseResultMap" type="cn.jingshan.stlgsc.web.goods.po.Goods" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="intro" property="intro" jdbcType="VARCHAR" />
+    <result column="refer_price" property="referPrice" jdbcType="DOUBLE" />
+    <result column="price" property="price" jdbcType="DOUBLE" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="mgr_id" property="mgrId" jdbcType="VARCHAR" />
+    <result column="insert_dt" property="insertDt" jdbcType="TIMESTAMP" />
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    id, name, type, picture, intro, refer_price, price, status, mgr_id, insert_dt
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_goods_mgr
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from t_goods_mgr
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="cn.jingshan.stlgsc.web.goods.po.Goods" >
+    insert into t_goods_mgr (id, name, type, 
+      picture, intro, refer_price, 
+      price, status, mgr_id, 
+      insert_dt)
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{picture,jdbcType=VARCHAR}, #{intro,jdbcType=VARCHAR}, #{referPrice,jdbcType=DOUBLE}, 
+      #{price,jdbcType=DOUBLE}, #{status,jdbcType=VARCHAR}, #{mgrId,jdbcType=VARCHAR}, 
+      #{insertDt,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="cn.jingshan.stlgsc.web.goods.po.Goods" >
+    insert into t_goods_mgr
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="picture != null" >
+        picture,
+      </if>
+      <if test="intro != null" >
+        intro,
+      </if>
+      <if test="referPrice != null" >
+        refer_price,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="mgrId != null" >
+        mgr_id,
+      </if>
+      <if test="insertDt != null" >
+        insert_dt,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="referPrice != null" >
+        #{referPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="mgrId != null" >
+        #{mgrId,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDt != null" >
+        #{insertDt,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="cn.jingshan.stlgsc.web.goods.po.Goods" >
+    update t_goods_mgr
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=VARCHAR},
+      </if>
+      <if test="picture != null" >
+        picture = #{picture,jdbcType=VARCHAR},
+      </if>
+      <if test="intro != null" >
+        intro = #{intro,jdbcType=VARCHAR},
+      </if>
+      <if test="referPrice != null" >
+        refer_price = #{referPrice,jdbcType=DOUBLE},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DOUBLE},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="mgrId != null" >
+        mgr_id = #{mgrId,jdbcType=VARCHAR},
+      </if>
+      <if test="insertDt != null" >
+        insert_dt = #{insertDt,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="cn.jingshan.stlgsc.web.goods.po.Goods" >
+    update t_goods_mgr
+    set name = #{name,jdbcType=VARCHAR},
+      type = #{type,jdbcType=VARCHAR},
+      picture = #{picture,jdbcType=VARCHAR},
+      intro = #{intro,jdbcType=VARCHAR},
+      refer_price = #{referPrice,jdbcType=DOUBLE},
+      price = #{price,jdbcType=DOUBLE},
+      status = #{status,jdbcType=VARCHAR},
+      mgr_id = #{mgrId,jdbcType=VARCHAR},
+      insert_dt = #{insertDt,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+   <!-- 手动添加 -->
+  <select id="selectCount" resultType="cn.jingshan.stlgsc.common.page.CountNum">
+    select count(*) as count from t_goods_mgr
+  </select>
+  
+  <select id="selectByPaging" resultMap="BaseResultMap" parameterType="cn.jingshan.stlgsc.common.page.PageParameter" >
+    select 
+    <include refid="Base_Column_List" />
+    from t_goods_mgr order by insert_dt desc limit #{start}, #{length}
+  </select>
+  
+   <!-- 批量删除 -->
+  <delete id="deleteBatch" parameterType="java.util.List" >
+    delete from t_goods_mgr where id in 
+    <foreach collection="list" index="index" item="item" open="(" separator="," close=")">   
+        #{item}   
+    </foreach>  
+  </delete>
+</mapper>
